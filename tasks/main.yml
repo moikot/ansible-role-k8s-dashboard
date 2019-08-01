@@ -1,0 +1,57 @@
+---
+- name: Check if Kubernetes dashboard is present.
+  shell: "kubectl get namespace kubernetes-dashboard -o name"
+  failed_when: false
+  changed_when: false
+  register: k8s_dashboard_is_present
+
+- name: Check if Kubernetes dashboard cluster role is present.
+  shell: "kubectl get clusterrole kubernetes-dashboard -o name"
+  failed_when: false
+  changed_when: false
+  register: k8s_dashboard_cluster_role_is_present
+
+- name: Check if Kubernetes dashboard cluster role binding is present.
+  shell: "kubectl get clusterrolebinding kubernetes-dashboard -o name"
+  failed_when: false
+  changed_when: false
+  register: k8s_dashboard_cluster_role_binding_is_present
+
+- name: Set Kubernetes dashboard deployment facts.
+  set_fact:
+    k8s_dashboard_is_present:
+      "{{ k8s_dashboard_is_present.rc == 0 }}"
+    k8s_dashboard_cluster_role_is_present:
+      "{{ k8s_dashboard_cluster_role_is_present.rc == 0 }}"
+    k8s_dashboard_cluster_role_binding_is_present:
+      "{{ k8s_dashboard_cluster_role_binding_is_present.rc == 0 }}"
+
+- name: Notification about partial deployment.
+  debug:
+    msg: "Dashboard namespace is not present but ether cluster role or
+    cluster role binding still exists, dashboard deployment will be skipped."
+  when: "not k8s_dashboard_is_present and
+    (k8s_dashboard_cluster_role_is_present or
+     k8s_dashboard_cluster_role_binding_is_present)"
+
+- name: Create Kubernetes dashboard deployment.
+  command: "kubectl create -f {{ k8s_dashboard_manifest }}"
+  register: k8s_dashboard_is_created
+  when:
+    - not k8s_dashboard_is_present
+    - not k8s_dashboard_cluster_role_is_present
+    - not k8s_dashboard_cluster_role_binding_is_present
+
+- name: Set 'Update dashboard is present' fact.
+  set_fact:
+    k8s_dashboard_is_present:
+      "{{ k8s_dashboard_is_created.rc == 0 }}"
+  when: k8s_dashboard_is_created.rc is defined
+
+- name: Apply Kubernetes dashboard arguments patch.
+  include_tasks: patch-dashboard-args.yml
+  when: k8s_dashboard_args is defined and k8s_dashboard_is_present
+
+- name: Apply Kubernetes dashboard cluster role binding patch.
+  include_tasks: patch-cluster-role-binding.yml
+  when: k8s_dashboard_cluster_role is defined

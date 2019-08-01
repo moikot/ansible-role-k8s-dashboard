@@ -1,0 +1,7 @@
+---
+- op: replace
+  path: "/spec/template/spec/containers/0/args"
+  value:
+{% for arg in k8s_dashboard_args %}
+    - {{ arg }}
+{% endfor %}

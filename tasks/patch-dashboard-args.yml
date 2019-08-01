@@ -1,0 +1,9 @@
+---
+- name: Apply the Kubernetes dashboard arguments patch.
+  command: "kubectl patch deployment kubernetes-dashboard
+    --namespace kubernetes-dashboard --type json --patch
+    \"{{ lookup('template', 'deployment-patch.j2') }}\""
+  register: result
+  changed_when: "'(no change)' not in result.stdout"
+  when:
+    - k8s_dashboard_is_present and k8s_dashboard_args is defined

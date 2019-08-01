@@ -1,0 +1,30 @@
+---
+dependencies: []
+
+galaxy_info:
+  author: moikot
+  description: Kubernetes Dashboard
+  license: "license (BSD, MIT)"
+  min_ansible_version: 2.4
+  platforms:
+    - name: EL
+      versions:
+        - 7
+        - 8
+    - name: Debian
+      versions:
+        - stretch
+        - buster
+    - name: Ubuntu
+      versions:
+        - xenial
+        - bionic
+  galaxy_tags:
+    - system
+    - containers
+    - docker
+    - rkt
+    - orchestration
+    - kubernetes
+    - k8s
+    - dashboard

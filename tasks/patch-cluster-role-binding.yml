@@ -1,0 +1,27 @@
+---
+- name: Get current Kubernetes dashboard cluster role binding.
+  command: "kubectl get clusterrolebinding kubernetes-dashboard
+    --output=jsonpath=\"{.roleRef.name}\""
+  failed_when: false
+  changed_when: false
+  register: result
+
+- name: Set the facts about Kubernetes dashboard cluster role binding.
+  set_fact:
+    k8s_dashboard_cluster_role_binding_is_present:
+      "{{ result.rc == 0 }}"
+    k8s_dashboard_cluster_role_binding_needs_update:
+      "{{ k8s_dashboard_cluster_role is defined
+      and k8s_dashboard_cluster_role != result.stdout }}"
+
+- name: Remove Kubernetes dashboard cluster role binding.
+  command: "kubectl delete clusterrolebinding kubernetes-dashboard"
+  when: k8s_dashboard_cluster_role_binding_needs_update and
+    k8s_dashboard_cluster_role_binding_is_present
+
+- name: Create Kubernetes dashboard cluster role binding.
+  shell: kubectl create -f -
+  args:
+    stdin: "{{ lookup('template', 'cluster-role-binding.j2') }}"
+  when: k8s_dashboard_cluster_role_binding_needs_update or
+    not k8s_dashboard_cluster_role_binding_is_present

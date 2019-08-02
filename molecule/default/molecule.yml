@@ -15,12 +15,15 @@ platforms:
     exposed_ports:
       - 8443/tcp
       - 10080/tcp
+    published_ports:
+      - 0.0.0.0:${TEST_CLUSTER_PORT:-10443}:8443/tcp
     pre_build_image: true
 provisioner:
   name: ansible
   lint:
     name: ansible-lint
   playbooks:
+    KIND_PORT: '${TEST_CLUSTER_PORT:-10443}'
     converge: ${MOLECULE_PLAYBOOK:-playbook.yml}
 scenario:
   name: default

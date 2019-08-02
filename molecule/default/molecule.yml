@@ -12,6 +12,9 @@ platforms:
     image: bsycorp/kind:latest-1.14
     privileged: true
     override_command: false
+    exposed_ports:
+      - 8443/tcp
+      - 10080/tcp
     pre_build_image: true
 provisioner:
   name: ansible

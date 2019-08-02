@@ -14,7 +14,7 @@ install:
 before_script:
   # Use actual Ansible Galaxy role name for the project directory.
   - cd ../
-  - mv ansible-role-$ROLE_NAME moikot.$ROLE_NAME
+  - mv ansible-role-k8s-dashboard moikot.$ROLE_NAME
   - cd moikot.$ROLE_NAME
 
 script:

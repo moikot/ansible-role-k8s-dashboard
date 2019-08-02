@@ -27,8 +27,8 @@ provisioner:
   playbooks:
     converge: ${MOLECULE_PLAYBOOK:-playbook.yml}
   env:
-    K8S_AUTH_KUBECONFIG: /tmp/molecule/kind-test-local/kubeconfig
-    KUBECONFIG: /tmp/molecule/kind-test-local/kubeconfig
+    K8S_AUTH_KUBECONFIG: /tmp/molecule/kubeconfig
+    KUBECONFIG: /tmp/molecule/kubeconfig
     KIND_PORT: '${TEST_CLUSTER_PORT:-10443}'
 scenario:
   name: default

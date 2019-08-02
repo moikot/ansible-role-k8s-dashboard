@@ -5,26 +5,26 @@
   vars:
     kubeconfig: "{{ lookup('env', 'KUBECONFIG') }}"
   tasks:
-    - name: delete the kubeconfig if present
+    - name: Delete the kubeconfig if present.
       file:
         path: '{{ kubeconfig }}'
         state: absent
       delegate_to: localhost
 
-    - name: Fetch the kubeconfig
+    - name: Fetch the kubeconfig from the Kind container.
       fetch:
         dest: '{{ kubeconfig }}'
         flat: yes
         src: /root/.kube/config
 
-    - name: Change the kubeconfig port to the proper value
+    - name: Change the kubeconfig port to the proper value.
       replace:
         regexp: 8443
         replace: "{{ lookup('env', 'KIND_PORT') }}"
         path: '{{ kubeconfig }}'
       delegate_to: localhost
 
-    - name: Wait for the Kubernetes API to become available (this could take a minute)
+    - name: Wait for the Kubernetes API to become available.
       uri:
         url: "https://localhost:8443/version"
         status_code: 200

@@ -1,0 +1,15 @@
+---
+- name: Converge
+  hosts: all
+
+  vars:
+    k8s_dashboard_cluster_role: cluster-admin
+
+    k8s_dashboard_args:
+      - --enable-skip-login
+      - --disable-settings-authorizer
+      - --auto-generate-certificates
+      - --namespace=kubernetes-dashboard
+
+  roles:
+    - role: moikot.k8s-dashboard

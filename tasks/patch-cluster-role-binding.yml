@@ -20,7 +20,7 @@
     k8s_dashboard_cluster_role_binding_is_present
 
 - name: Create Kubernetes dashboard cluster role binding.
-  shell: kubectl create -f -
+  command: kubectl create -f -
   args:
     stdin: "{{ lookup('template', 'cluster-role-binding.j2') }}"
   when: k8s_dashboard_cluster_role_binding_needs_update or

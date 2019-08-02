@@ -1,18 +1,18 @@
 ---
 - name: Check if Kubernetes dashboard is present.
-  shell: "kubectl get namespace kubernetes-dashboard -o name"
+  command: "kubectl get namespace kubernetes-dashboard -o name"
   failed_when: false
   changed_when: false
   register: k8s_dashboard_is_present
 
 - name: Check if Kubernetes dashboard cluster role is present.
-  shell: "kubectl get clusterrole kubernetes-dashboard -o name"
+  command: "kubectl get clusterrole kubernetes-dashboard -o name"
   failed_when: false
   changed_when: false
   register: k8s_dashboard_cluster_role_is_present
 
 - name: Check if Kubernetes dashboard cluster role binding is present.
-  shell: "kubectl get clusterrolebinding kubernetes-dashboard -o name"
+  command: "kubectl get clusterrolebinding kubernetes-dashboard -o name"
   failed_when: false
   changed_when: false
   register: k8s_dashboard_cluster_role_binding_is_present

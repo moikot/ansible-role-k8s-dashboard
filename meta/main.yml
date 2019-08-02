@@ -2,7 +2,7 @@
 dependencies: []
 
 galaxy_info:
-  role_name: k8s-dashboard
+  role_name: k8s_dashboard
   author: moikot
   description: Kubernetes Dashboard
   license: "license (BSD, MIT)"

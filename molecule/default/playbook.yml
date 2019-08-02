@@ -12,4 +12,4 @@
       - --namespace=kubernetes-dashboard
 
   roles:
-    - role: moikot.k8s-dashboard
+    - role: moikot.k8s_dashboard

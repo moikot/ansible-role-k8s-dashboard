@@ -25,8 +25,11 @@ provisioner:
   lint:
     name: ansible-lint
   playbooks:
-    KIND_PORT: '${TEST_CLUSTER_PORT:-10443}'
     converge: ${MOLECULE_PLAYBOOK:-playbook.yml}
+  env:
+    K8S_AUTH_KUBECONFIG: /tmp/molecule/kind-test-local/kubeconfig
+    KUBECONFIG: /tmp/molecule/kind-test-local/kubeconfig
+    KIND_PORT: '${TEST_CLUSTER_PORT:-10443}'
 scenario:
   name: default
 verifier:

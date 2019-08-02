@@ -9,6 +9,8 @@ lint:
     config-file: molecule/default/yaml-lint.yml
 platforms:
   - name: instance
+    groups:
+      - k8s
     image: bsycorp/kind:latest-1.14
     privileged: true
     override_command: false

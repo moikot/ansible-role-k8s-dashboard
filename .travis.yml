@@ -1,7 +1,7 @@
 ---
 sudo: required
 services: docker
-language: minimal
+language: python
 
 env:
   global:

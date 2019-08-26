@@ -6,4 +6,4 @@
   register: result
   changed_when: "'(no change)' not in result.stdout"
   when:
-    - metrics-scraper-image is defined
+    - metrics_scraper_image is defined

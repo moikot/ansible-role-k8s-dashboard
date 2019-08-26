@@ -1,0 +1,9 @@
+---
+- name: Apply the Metrics Scraper patch.
+  command: "kubectl patch deployment kubernetes-metrics-scraper
+    --namespace kubernetes-dashboard --type json --patch
+    \"{{ lookup('template', 'metrics-scraper-patch.j2') }}\""
+  register: result
+  changed_when: "'(no change)' not in result.stdout"
+  when:
+    - metrics-scraper-image is defined

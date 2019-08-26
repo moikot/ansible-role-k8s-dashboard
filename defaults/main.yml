@@ -6,3 +6,5 @@ k8s_dashboard_args:
   - --namespace=kubernetes-dashboard
 
 k8s_dashboard_cluster_role: kubernetes-dashboard
+
+metrics-scraper-image: moikot/dashboard-metrics-sidecar

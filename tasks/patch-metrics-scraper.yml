@@ -1,6 +1,6 @@
 ---
 - name: Apply the Metrics Scraper patch.
-  command: "kubectl patch deployment kubernetes-metrics-scraper
+  command: "kubectl patch deployment dashboard-metrics-scraper
     --namespace kubernetes-dashboard --type json --patch
     \"{{ lookup('template', 'metrics-scraper-patch.j2') }}\""
   register: result

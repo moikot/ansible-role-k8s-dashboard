@@ -28,7 +28,7 @@ Dashboard cluster role reference:
 
 ## Playbook example
 
-**IMPORTANT:** This example is granting admin privileges to Dashboard's service account and allows you to skip authorization. Please read [Access control](https://github.com/kubernetes/dashboard/wiki/Access-control) Wiki before using it.
+**IMPORTANT:** This example is granting admin privileges to Dashboard's service account and allows you to skip authorization. Please read [Access control](https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/README.md) Wiki before using it.
 
 ```yaml
 - hosts: all

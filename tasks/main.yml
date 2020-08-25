@@ -52,10 +52,6 @@
   include_tasks: patch-dashboard.yml
   when: k8s_dashboard_is_present
 
-- name: Apply Metrics Scraper patch.
-  include_tasks: patch-metrics-scraper.yml
-  when: k8s_dashboard_is_present
-
 - name: Apply Kubernetes dashboard cluster role binding patch.
   include_tasks: patch-cluster-role-binding.yml
   when: k8s_dashboard_cluster_role is defined

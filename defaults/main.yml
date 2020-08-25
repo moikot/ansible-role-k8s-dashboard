@@ -1,10 +1,8 @@
 ---
-k8s_dashboard_manifest: https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta2/aio/deploy/recommended.yaml
+k8s_dashboard_manifest: https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
 
 k8s_dashboard_args:
   - --auto-generate-certificates
   - --namespace=kubernetes-dashboard
 
 k8s_dashboard_cluster_role: kubernetes-dashboard
-
-metrics_scraper_image: moikot/dashboard-metrics-sidecar

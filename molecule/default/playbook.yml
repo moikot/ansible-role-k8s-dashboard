@@ -11,7 +11,5 @@
       - --auto-generate-certificates
       - --namespace=kubernetes-dashboard
 
-    metrics_scraper_image: moikot/dashboard-metrics-sidecar
-
   roles:
     - role: moikot.k8s_dashboard

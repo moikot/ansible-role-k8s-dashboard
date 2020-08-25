@@ -14,7 +14,7 @@ Requires Kubernetes and `kubectl` on the target.
 
 Link to the Dashboard manifest:
 
-    k8s_dashboard_manifest: https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta2/aio/deploy/recommended.yaml
+    k8s_dashboard_manifest: https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
 
 Dashboard arguments:
 

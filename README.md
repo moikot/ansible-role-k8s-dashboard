@@ -43,5 +43,5 @@ Dashboard cluster role reference:
     k8s_dashboard_cluster_role: cluster-admin  
 
   roles:
-    - moikot.k8s-dashboard
+    - moikot.k8s_dashboard
 ```
